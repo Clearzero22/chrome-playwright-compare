@@ -1,0 +1,17 @@
+{
+  "name": "selenium_version",
+  "version": "1.0.0",
+  "description": "Selenium 版本 — 5 种方案对比",
+  "scripts": {
+    "01": "node 01-selenium-standard.js",
+    "02": "node 02-selenium-cdp-stealth.js",
+    "03": "node 03-selenium-stealth-options.js",
+    "04": "node 04-selenium-remote.js",
+    "05": "node 05-selenium-full-stealth.js"
+  },
+  "keywords": ["selenium", "stealth", "chrome"],
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.43.0"
+  }
+}
