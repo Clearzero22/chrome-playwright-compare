@@ -121,6 +121,20 @@ Stability and security will suffer.
 
 ## 最终建议
 
+## 跨平台支持
+
+| 方案 | macOS | Windows | Linux | 备注 |
+|------|:-----:|:-------:|:-----:|------|
+| 1. Playwright + channel | ✅ | ✅ 原生 | ✅ 原生 | Playwright 自动查找 Chrome |
+| 2. Puppeteer Stealth | ✅ | ✅ 改路径 | ✅ 改路径 | 使用 `_platform.js` 自动适配 |
+| 3. Playwright Extra | ✅ | ✅ 原生 | ✅ 原生 | 同 Playwright |
+| 4. CDP connect | ✅ | ✅ 改路径 | ✅ 改路径 | `spawn` 的跨平台差异已处理 |
+| 5. 手动 initScript | ✅ | ✅ 原生 | ✅ 原生 | 纯 JS 注入，无平台依赖 |
+
+> 方案 1/3/5 使用 `channel: 'chrome'` 让 Playwright 自动查找系统 Chrome，**天然跨平台**。
+> 方案 2/4 需指定路径，已内置 `_platform.js` 辅助模块自动适配。
+> Windows 注意：`spawn` 的 `stdio: 'ignore'` 和路径正斜杠需额外处理（`_platform.js` 已涵盖）。
+
 ```
 强检测（Google 登录/Cloudflare/reCAPTCHA）→ 方案 2 Puppeteer Extra + Stealth
 一般检测（爬数据、自动化测试）       → 方案 1 Playwright + channel:chrome

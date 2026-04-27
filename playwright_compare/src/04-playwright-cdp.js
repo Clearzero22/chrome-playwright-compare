@@ -10,6 +10,7 @@ const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const http = require('http');
 const path = require('path');
+const { getChromePath } = require('./_platform');
 
 const CDP_PORT = 9333;
 const userDataDir = path.join(__dirname, '..', 'user_data_cdp');
@@ -29,8 +30,9 @@ function getWsEndpoint(port) {
 
 (async () => {
   // 1. 启动本机 Chrome 进程
-  const chromeProcess = spawn(
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+  const chromePath = getChromePath();
+  const chromeExe = Array.isArray(chromePath) ? chromePath[0] : chromePath;
+  const chromeProcess = spawn(chromeExe,
     [
       `--remote-debugging-port=${CDP_PORT}`,
       `--user-data-dir=${userDataDir}`,

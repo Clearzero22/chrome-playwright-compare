@@ -7,12 +7,17 @@
  */
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+const { getChromePath } = require('./_platform');
 puppeteer.use(StealthPlugin());
 
 (async () => {
+  const chromePath = getChromePath();
+  // Windows 返回数组，取第一个存在的
+  const executablePath = Array.isArray(chromePath) ? chromePath[0] : chromePath;
+
   const browser = await puppeteer.launch({
     headless: false,
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    executablePath,
     userDataDir: '/tmp/puppeteer_user_data',
     args: [
       '--no-sandbox',
