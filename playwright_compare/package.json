@@ -1,0 +1,28 @@
+{
+  "name": "chrome_compare",
+  "version": "1.0.0",
+  "description": "对比五种方案：使用本机 Chrome 进行自动化",
+  "scripts": {
+    "01": "node src/01-playwright-channel.js",
+    "02": "node src/02-puppeteer-stealth.js",
+    "03": "node src/03-playwright-extra.js",
+    "04": "node src/04-playwright-cdp.js",
+    "05": "node src/05-manual-stealth.js",
+    "all": "node src/01-playwright-channel.js && node src/02-puppeteer-stealth.js && node src/03-playwright-extra.js && node src/04-playwright-cdp.js && node src/05-manual-stealth.js"
+  },
+  "keywords": [
+    "playwright",
+    "puppeteer",
+    "stealth",
+    "chrome",
+    "compare"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.59.1",
+    "playwright-extra": "^4.3.6",
+    "puppeteer": "^24.6.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
+  }
+}
