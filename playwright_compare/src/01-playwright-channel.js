@@ -29,6 +29,7 @@ const userDataDir = path.join(__dirname, '..', 'user_data');
   }));
   console.table(result);
 
-  await page.waitForTimeout(3000);
+  console.log('⏳ 浏览器将保持打开 120 秒...');
+  await page.waitForTimeout(120000);
   await browser.close();
 })();

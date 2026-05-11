@@ -18,8 +18,12 @@ chromium.use(StealthPlugin());
   });
 
   const page = await browser.newPage();
-  await page.goto('https://www.google.com');
+  await page.goto('https://www.google.com', { waitUntil: 'networkidle' });
   console.log('✅ 方案 3：Playwright Extra + Stealth');
+
+  // Wait for page to be fully stable before evaluating
+  await page.waitForLoadState('domcontentloaded');
+  await page.waitForTimeout(1000);
 
   const result = await page.evaluate(() => ({
     webdriver: navigator.webdriver,
@@ -27,6 +31,7 @@ chromium.use(StealthPlugin());
   }));
   console.table(result);
 
-  await page.waitForTimeout(3000);
+  console.log('⏳ 浏览器将保持打开 120 秒...');
+  await new Promise(r => setTimeout(r, 120000));
   await browser.close();
 })();

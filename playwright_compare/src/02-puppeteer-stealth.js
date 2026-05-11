@@ -40,6 +40,7 @@ puppeteer.use(StealthPlugin());
   }));
   console.table(result);
 
-  await new Promise(r => setTimeout(r, 3000));
+  console.log('⏳ 浏览器将保持打开 120 秒...');
+  await new Promise(r => setTimeout(r, 120000));
   await browser.close();
 })();
